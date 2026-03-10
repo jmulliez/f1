@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import Drivers from './pages/Drivers';
 import DriverDetail from './pages/DriverDetail';
@@ -11,9 +11,9 @@ import './index.css';
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Navbar />
-        <main className="main-content">
+      <div className="app-layout">
+        <Sidebar />
+        <main className="content-area">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/drivers" element={<Drivers />} />
@@ -29,3 +29,4 @@ function App() {
 }
 
 export default App;
+

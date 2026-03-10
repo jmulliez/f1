@@ -5,11 +5,11 @@ export const drivers = [
     currentTeamId: 'ferrari', wins: 7, podiums: 39, poles: 26, points: 1381, championships: 0,
     image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png'
   },
-  {
-    id: 'sainz', name: 'Carlos', surname: 'Sainz', nationality: 'Spanish', birthDate: '1994-09-01', number: 55,
-    bio: 'Carlos Sainz comes from a rich motorsport pedigree. Known for his methodical approach, consistent race pace, and excellent technical feedback, Sainz spent years in the midfield before joining Ferrari and then Williams.',
-    currentTeamId: 'williams', wins: 3, podiums: 21, poles: 5, points: 1042.5, championships: 0,
-    image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png'
+   {
+    id: 'max_verstappen', name: 'Max', surname: 'Verstappen', nationality: 'Dutch', birthDate: '1997-09-30', number: 1,
+    bio: 'Max Verstappen is the youngest driver ever to start an F1 race. Renowned for his aggressive driving style, he established a period of sheer dominance alongside Red Bull Racing.',
+    currentTeamId: 'redbull', wins: 61, podiums: 108, poles: 40, points: 2900, championships: 3,
+    image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png'
   },
   {
     id: 'hamilton', name: 'Lewis', surname: 'Hamilton', nationality: 'British', birthDate: '1985-01-07', number: 44,
@@ -23,11 +23,12 @@ export const drivers = [
     currentTeamId: 'mercedes', wins: 2, podiums: 14, poles: 3, points: 550, championships: 0,
     image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png'
   },
-  {
-    id: 'max_verstappen', name: 'Max', surname: 'Verstappen', nationality: 'Dutch', birthDate: '1997-09-30', number: 1,
-    bio: 'Max Verstappen is the youngest driver ever to start an F1 race. Renowned for his aggressive driving style, he established a period of sheer dominance alongside Red Bull Racing.',
-    currentTeamId: 'redbull', wins: 61, podiums: 108, poles: 40, points: 2900, championships: 3,
-    image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png'
+
+   {
+    id: 'sainz', name: 'Carlos', surname: 'Sainz', nationality: 'Spanish', birthDate: '1994-09-01', number: 55,
+    bio: 'Carlos Sainz comes from a rich motorsport pedigree. Known for his methodical approach, consistent race pace, and excellent technical feedback, Sainz spent years in the midfield before joining Ferrari and then Williams.',
+    currentTeamId: 'williams', wins: 3, podiums: 21, poles: 5, points: 1042.5, championships: 0,
+    image: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png'
   },
   {
     id: 'perez', name: 'Sergio', surname: 'Perez', nationality: 'Mexican', birthDate: '1990-01-26', number: 11,
