@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Trophy, Clock, MapPin, ChevronRight, ExternalLink } from 'lucide-react';
 import { fetchNextGP, fetchDriverStandings, fetchConstructorStandings, fetchLatestNews } from '../api/f1-api';
+import { drivers as localDrivers } from '../data/database';
 
 /* ── Countdown helper ─────────────────────────────────── */
 function useCountdown(targetDate) {
@@ -119,7 +120,15 @@ const Home = () => {
                                 const medal = ['🥇', '🥈', '🥉'][i];
                                 return (
                                     <div key={entry.Driver.driverId} className={`top3-card pos-${i + 1}`}>
-                                        <span className="top3-medal">{medal}</span>
+                                        {(() => {
+                                            const local = localDrivers.find(d => d.id === entry.Driver.driverId);
+                                            return local?.image ? (
+                                                <img src={local.image} alt={entry.Driver.familyName} className="top3-avatar" />
+                                            ) : (
+                                                <span className="top3-medal">{medal}</span>
+                                            );
+                                        })()}
+                                        <span className="top3-rank">{medal}</span>
                                         <div className="top3-name">
                                             {entry.Driver.givenName}<br />
                                             <strong>{entry.Driver.familyName}</strong>
@@ -144,17 +153,29 @@ const Home = () => {
                         </div>
                         <table className="standings-table">
                             <thead>
-                                <tr><th>#</th><th>Pilote</th><th>Écurie</th><th>Pts</th></tr>
+                                <tr><th>#</th><th></th><th>Pilote</th><th>Écurie</th><th>Pts</th></tr>
                             </thead>
                             <tbody>
-                                {drivers.map(e => (
-                                    <tr key={e.Driver.driverId}>
-                                        <td className="pos">{e.position}</td>
-                                        <td><strong>{e.Driver.givenName.charAt(0)}. {e.Driver.familyName}</strong></td>
-                                        <td className="team-col">{e.Constructors?.[0]?.name}</td>
-                                        <td className="pts">{e.points}</td>
-                                    </tr>
-                                ))}
+                                {drivers.map(e => {
+                                    const local = localDrivers.find(d => d.id === e.Driver.driverId);
+                                    return (
+                                        <tr key={e.Driver.driverId}>
+                                            <td className="pos">{e.position}</td>
+                                            <td>
+                                                {local?.image && (
+                                                    <img
+                                                        src={local.image}
+                                                        alt={e.Driver.familyName}
+                                                        className="standings-avatar"
+                                                    />
+                                                )}
+                                            </td>
+                                            <td><strong>{e.Driver.givenName.charAt(0)}. {e.Driver.familyName}</strong></td>
+                                            <td className="team-col">{e.Constructors?.[0]?.name}</td>
+                                            <td className="pts">{e.points}</td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>

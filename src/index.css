@@ -305,6 +305,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .top3-medal { font-size: 1.8rem; display: block; margin-bottom: 8px; }
 
+.top3-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  margin: 0 auto 8px;
+  display: block;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+.top3-rank { font-size: 1.4rem; display: block; margin-bottom: 8px; }
+
 .top3-name {
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -374,6 +387,16 @@ h1, h2, h3, h4, h5, h6 {
 .standings-table .team-col {
   color: var(--text-secondary);
   font-size: 0.82rem;
+}
+
+.standings-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--sidebar-bg);
+  display: block;
 }
 
 /* ══════════════════════════════════════════════
@@ -609,8 +632,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .driver-card-image-wrap img {
+  width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top center;
   transition: transform var(--transition);
 }
 
