@@ -54,7 +54,7 @@ const Seasons = () => {
                                         <img
                                             src={driver.image}
                                             alt={driver.surname}
-                                            style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }}
+                                            style={{ width: '46px', height: '46px', borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: '1px solid rgba(255,255,255,0.1)' }}
                                         />
                                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                                             <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1 }}>{driver.name}</span>

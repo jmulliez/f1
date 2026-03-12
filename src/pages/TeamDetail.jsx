@@ -108,7 +108,7 @@ const TeamDetail = () => {
                                         {driversList.map(driver => (
                                             <Link to={`/drivers/${driver.id}`} key={driver.id} className="season-driver-pill" style={{ justifyContent: 'space-between' }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                                    <img src={driver.image} alt={driver.surname} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
+                                                    <img src={driver.image} alt={driver.surname} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: '1px solid rgba(255,255,255,0.1)' }} />
                                                     <span style={{ fontWeight: 700, fontSize: '1rem' }}>{driver.name} <strong style={{ fontWeight: 900 }}>{driver.surname}</strong></span>
                                                 </div>
                                                 <span style={{
