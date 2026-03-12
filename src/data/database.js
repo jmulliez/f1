@@ -2,32 +2,32 @@ export const drivers = [
   {
     id: 'leclerc', name: 'Charles', surname: 'Leclerc', nationality: 'Monegasque', birthDate: '1997-10-16', number: 16,
     bio: 'Born in Monaco, Charles Leclerc is a proven race winner and one of F1’s most exciting talents. He rose through the karting ranks and dominated the junior formulas before making his F1 debut with Alfa Romeo in 2018.',
-    currentTeamId: 'ferrari', wins: 7, podiums: 39, poles: 26, points: 1381, championships: 0,
+    currentTeamId: 'ferrari', wins: 8, podiums: 58, poles: 26, points: 1687, championships: 0,
     image: '/images/drivers/charles.png'
   },
    {
     id: 'max_verstappen', name: 'Max', surname: 'Verstappen', nationality: 'Dutch', birthDate: '1997-09-30', number: 1,
     bio: 'Max Verstappen is the youngest driver ever to start an F1 race. Renowned for his aggressive driving style, he established a period of sheer dominance alongside Red Bull Racing.',
-    currentTeamId: 'redbull', wins: 61, podiums: 108, poles: 40, points: 2900, championships: 3,
+    currentTeamId: 'redbull', wins: 71, podiums: 127, poles: 48, points: 3452.5, championships: 4,
     image: '/images/drivers/max.png'
   },
   {
     id: 'hamilton', name: 'Lewis', surname: 'Hamilton', nationality: 'British', birthDate: '1985-01-07', number: 44,
     bio: 'Seven-time World Champion Lewis Hamilton needs no introduction. Statistically the most successful driver in Formula 1 history with the most wins and pole positions.',
-    currentTeamId: 'ferrari', wins: 105, podiums: 201, poles: 104, points: 4800, championships: 7,
+    currentTeamId: 'ferrari', wins: 105, podiums: 202, poles: 104, points: 4800, championships: 7,
     image: '/images/drivers/lewis.png'
   },
   {
     id: 'russell', name: 'George', surname: 'Russell', nationality: 'British', birthDate: '1998-02-15', number: 63,
     bio: 'George Russell proved his immense potential by winning the GP3 and Formula 2 championships back-to-back. He is now the leading figure at Mercedes.',
-    currentTeamId: 'mercedes', wins: 2, podiums: 14, poles: 3, points: 550, championships: 0,
+    currentTeamId: 'mercedes', wins: 6, podiums: 25, poles: 5, points: 869, championships: 0,
 image: '/images/drivers/russel.png'
   },
 
    {
     id: 'sainz', name: 'Carlos', surname: 'Sainz', nationality: 'Spanish', birthDate: '1994-09-01', number: 55,
     bio: 'Carlos Sainz comes from a rich motorsport pedigree. Known for his methodical approach, consistent race pace, and excellent technical feedback, Sainz spent years in the midfield before joining Ferrari and then Williams.',
-    currentTeamId: 'williams', wins: 3, podiums: 21, poles: 5, points: 1042.5, championships: 0,
+    currentTeamId: 'williams', wins: 4, podiums: 31, poles: 6, points: 1336.5, championships: 0,
     image: '/images/drivers/carlos.png'
   },
   {
@@ -39,13 +39,13 @@ image: '/images/drivers/russel.png'
   {
     id: 'norris', name: 'Lando', surname: 'Norris', nationality: 'British', birthDate: '1999-11-13', number: 4,
     bio: 'Lando Norris combines raw pace with an engaging personality. He is McLaren\'s undisputed team leader.',
-    currentTeamId: 'mclaren', wins: 3, podiums: 25, poles: 5, points: 900, championships: 0,
+    currentTeamId: 'mclaren', wins: 11, podiums: 44, poles: 13, points: 1323, championships: 1,
     image: '/images/drivers/lando.png'
   },
   {
     id: 'piastri', name: 'Oscar', surname: 'Piastri', nationality: 'Australian', birthDate: '2001-04-06', number: 81,
     bio: 'Oscar Piastri burst onto the F1 scene as one of the most highly-rated rookies, matching his experienced teammate at McLaren quickly.',
-    currentTeamId: 'mclaren', wins: 1, podiums: 8, poles: 0, points: 300, championships: 0,
+    currentTeamId: 'mclaren', wins: 9, podiums: 26, poles: 6, points: 799, championships: 0,
     image: '/images/drivers/oscar.png'
   },
   {
@@ -63,13 +63,13 @@ image: '/images/drivers/russel.png'
   {
     id: 'gasly', name: 'Pierre', surname: 'Gasly', nationality: 'French', birthDate: '1996-02-07', number: 10,
     bio: 'An incredibly quick and determined driver, Gasly is a Grand Prix winner who found his home leading Alpine.',
-    currentTeamId: 'alpine', wins: 1, podiums: 4, poles: 0, points: 400, championships: 0,
+    currentTeamId: 'alpine', wins: 1, podiums: 5, poles: 0, points: 400, championships: 0,
     image: '/images/drivers/gasly.png'
   },
   {
     id: 'ocon', name: 'Esteban', surname: 'Ocon', nationality: 'French', birthDate: '1996-09-17', number: 31,
     bio: 'Known for his fierce defending, Ocon is a race winner who transitioned from Alpine to Haas looking for a new challenge.',
-    currentTeamId: 'haas', wins: 1, podiums: 3, poles: 0, points: 450, championships: 0,
+    currentTeamId: 'haas', wins: 1, podiums: 4, poles: 0, points: 450, championships: 0,
     image: '/images/drivers/esteban.png'
   },
   {
@@ -153,7 +153,7 @@ image: '/images/drivers/russel.png'
   {
     id: 'hadjar', name: 'Isack', surname: 'Hadjar', nationality: 'French', birthDate: '2004-09-28', number: 17,
     bio: 'Red Bull Junior who impressed in F2 to earn a seat at RB, and rapidly climbed to Red Bull Racing for 2026.',
-    currentTeamId: 'redbull', wins: 0, podiums: 0, poles: 0, points: 0, championships: 0,
+    currentTeamId: 'redbull', wins: 0, podiums: 1, poles: 0, points: 15, championships: 0,
     image: '/images/drivers/isack.png'
   },
   {

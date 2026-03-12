@@ -1,33 +1,38 @@
 import { Link } from 'react-router-dom';
+import { Shield } from 'lucide-react';
 import { teams } from '../data/database';
 
 const Teams = () => {
     return (
-        <div className="container" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
-            <h1 className="section-title">Écuries de Formule 1</h1>
+        <div style={{ paddingBottom: '60px' }}>
+            <div className="page-header">
+                <h1 className="page-header-title">
+                    <Shield size={30} color="var(--f1-red)" style={{ marginRight: '-4px' }}/>
+                    Écuries
+                </h1>
+                <p className="page-header-sub">{teams.length} équipes en compétition</p>
+            </div>
 
-            <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))' }}>
+            <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
                 {teams.map(team => (
                     <Link to={`/teams/${team.id}`} key={team.id} className="team-card animate-fade-up">
                         <img src={team.logo} alt={team.name} className="team-logo" loading="lazy" />
                         <h3 className="team-name">{team.name}</h3>
-
-                        <div className="team-country" style={{ marginBottom: '16px' }}>
-                            Base: {team.country}
+                        <div className="team-country">
+                            <span>📍</span> {team.country}
                         </div>
-
-                        <div style={{ display: 'flex', gap: '24px', justifyContent: 'center' }}>
-                            <div style={{ textAlign: 'center' }}>
-                                <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{team.championships}</div>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Titres</div>
+                        <div className="team-stats-row">
+                            <div className="team-stat">
+                                <span className="team-stat-value">{team.championships}</span>
+                                <span className="team-stat-label">Titres</span>
                             </div>
-                            <div style={{ textAlign: 'center' }}>
-                                <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{team.wins}</div>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Victoires</div>
+                            <div className="team-stat">
+                                <span className="team-stat-value">{team.wins}</span>
+                                <span className="team-stat-label">Victoires</span>
                             </div>
-                            <div style={{ textAlign: 'center' }}>
-                                <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{team.podiums}</div>
-                                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Podiums</div>
+                            <div className="team-stat">
+                                <span className="team-stat-value">{team.podiums}</span>
+                                <span className="team-stat-label">Podiums</span>
                             </div>
                         </div>
                     </Link>

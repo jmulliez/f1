@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Trophy, Clock, MapPin, ChevronRight, ExternalLink } from 'lucide-react';
+import { Trophy, Clock, MapPin, ChevronRight, Zap, Flag } from 'lucide-react';
 import { fetchNextGP, fetchDriverStandings, fetchConstructorStandings, fetchLatestNews } from '../api/f1-api';
 import { drivers as localDrivers } from '../data/database';
 
@@ -26,7 +26,7 @@ function useCountdown(targetDate) {
     return timeLeft;
 }
 
-/* ── Single countdown unit ────────────────────────────── */
+/* ── TimeUnit ─────────────────────────────────────────── */
 const TimeUnit = ({ value, label }) => (
     <div className="time-unit">
         <span className="time-value">{String(value).padStart(2, '0')}</span>
@@ -64,19 +64,35 @@ const Home = () => {
 
     const top3 = drivers.slice(0, 3);
     const featured = news[0] ?? null;
-    const rest = news.slice(1, 7);   // 6 items → 3-col grid (2 rows)
+    const rest = news.slice(1, 7);
 
     if (loading) {
         return (
             <div className="page-loading">
                 <div className="spinner" />
-                <p>Chargement en temps réel…</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Chargement des données…</p>
             </div>
         );
     }
 
     return (
         <div className="home-page">
+
+            {/* ── Hero Banner ── */}
+            <div className="hero-banner animate-fade-up">
+                <div className="hero-content">
+                    <div className="hero-badge">
+                        <span className="hero-badge-dot" />
+                        Live · Saison 2026
+                    </div>
+                    <h1 className="hero-title">
+                        Bienvenue sur<br /><span>F1 Info</span>
+                    </h1>
+                    <p className="hero-subtitle">
+                        Standings, pilotes, écuries et actualités en temps réel
+                    </p>
+                </div>
+            </div>
 
             {/* ── Row 1 : GP widget + Top 3 ── */}
             <div className="home-top-row">
@@ -85,10 +101,11 @@ const Home = () => {
                 {nextGP && (
                     <div className="widget gp-widget">
                         <div className="widget-header">
-                            <Clock size={18} /> Prochain Grand Prix
+                            <Clock size={14} /> Prochain Grand Prix
                         </div>
                         <div className="gp-name">
-                            <MapPin size={16} /> Grand Prix de {nextGP.Circuit.Location.country}
+                            <MapPin size={15} color="var(--f1-red)" />
+                            Grand Prix de {nextGP.Circuit.Location.country}
                         </div>
                         <div className="gp-circuit">{nextGP.Circuit.circuitName}</div>
                         <div className="gp-date">
@@ -105,7 +122,7 @@ const Home = () => {
                                 <TimeUnit value={countdown.seconds} label="sec" />
                             </div>
                         )}
-                        <div className="gp-round">Round {nextGP.round} / Saison {nextGP.season}</div>
+                        <div className="gp-round">Round {nextGP.round} · Saison {nextGP.season}</div>
                     </div>
                 )}
 
@@ -113,22 +130,21 @@ const Home = () => {
                 {top3.length > 0 && (
                     <div className="widget top3-widget">
                         <div className="widget-header">
-                            <Trophy size={18} /> Top 3 Pilotes 2026
+                            <Trophy size={14} /> Top 3 Pilotes 2026
                         </div>
                         <div className="top3-grid">
                             {top3.map((entry, i) => {
-                                const medal = ['🥇', '🥈', '🥉'][i];
+                                const medals = ['🥇', '🥈', '🥉'];
+                                const rankLabels = ['1er', '2ème', '3ème'];
+                                const local = localDrivers.find(d => d.id === entry.Driver.driverId);
                                 return (
                                     <div key={entry.Driver.driverId} className={`top3-card pos-${i + 1}`}>
-                                        {(() => {
-                                            const local = localDrivers.find(d => d.id === entry.Driver.driverId);
-                                            return local?.image ? (
-                                                <img src={local.image} alt={entry.Driver.familyName} className="top3-avatar" />
-                                            ) : (
-                                                <span className="top3-medal">{medal}</span>
-                                            );
-                                        })()}
-                                        <span className="top3-rank">{medal}</span>
+                                        <span className="top3-rank-badge">{rankLabels[i]}</span>
+                                        {local?.image ? (
+                                            <img src={local.image} alt={entry.Driver.familyName} className="top3-avatar" />
+                                        ) : (
+                                            <span className="top3-medal">{medals[i]}</span>
+                                        )}
                                         <div className="top3-name">
                                             {entry.Driver.givenName}<br />
                                             <strong>{entry.Driver.familyName}</strong>
@@ -145,15 +161,14 @@ const Home = () => {
 
             {/* ── Row 2 : Standings ── */}
             <div className="standings-row">
-                {/* Driver standings */}
                 {drivers.length > 0 && (
                     <div className="widget standings-widget">
                         <div className="widget-header">
-                            <Trophy size={18} /> Championnat Pilotes
+                            <Trophy size={14} /> Championnat Pilotes
                         </div>
                         <table className="standings-table">
                             <thead>
-                                <tr><th>#</th><th></th><th>Pilote</th><th>Écurie</th><th>Pts</th></tr>
+                                <tr><th>#</th><th></th><th>Pilote</th><th>Écurie</th><th style={{ textAlign: 'right' }}>Pts</th></tr>
                             </thead>
                             <tbody>
                                 {drivers.map(e => {
@@ -163,11 +178,7 @@ const Home = () => {
                                             <td className="pos">{e.position}</td>
                                             <td>
                                                 {local?.image && (
-                                                    <img
-                                                        src={local.image}
-                                                        alt={e.Driver.familyName}
-                                                        className="standings-avatar"
-                                                    />
+                                                    <img src={local.image} alt={e.Driver.familyName} className="standings-avatar" />
                                                 )}
                                             </td>
                                             <td><strong>{e.Driver.givenName.charAt(0)}. {e.Driver.familyName}</strong></td>
@@ -181,15 +192,14 @@ const Home = () => {
                     </div>
                 )}
 
-                {/* Constructor standings */}
                 {constructors.length > 0 && (
                     <div className="widget standings-widget">
                         <div className="widget-header">
-                            <Trophy size={18} /> Championnat Constructeurs
+                            <Flag size={14} /> Championnat Constructeurs
                         </div>
                         <table className="standings-table">
                             <thead>
-                                <tr><th>#</th><th>Équipe</th><th>Pts</th></tr>
+                                <tr><th>#</th><th>Équipe</th><th style={{ textAlign: 'right' }}>Pts</th></tr>
                             </thead>
                             <tbody>
                                 {constructors.map(e => (
@@ -215,27 +225,19 @@ const Home = () => {
                             <span className="article-tag">{featured.category}</span>
                             <h3 className="featured-title">{featured.title}</h3>
                             <p className="featured-excerpt">{featured.excerpt}</p>
-                            <span className="article-date">
-                                {new Date(featured.date).toLocaleDateString('fr-FR')}
-                            </span>
+                            <span className="article-date">{new Date(featured.date).toLocaleDateString('fr-FR')}</span>
                         </div>
                     </a>
                 </div>
             )}
 
-            {/* ── Row 4 : News grid (3 cols) ── */}
+            {/* ── Row 4 : News grid ── */}
             {rest.length > 0 && (
                 <div className="home-section">
                     <h2 className="section-title">Dernières actus F1</h2>
                     <div className="news-grid-3col">
                         {rest.map(item => (
-                            <a
-                                key={item.id}
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="news-tile"
-                            >
+                            <a key={item.id} href={item.link} target="_blank" rel="noopener noreferrer" className="news-tile">
                                 <div className="news-tile-img" style={{ backgroundImage: `url(${item.image})` }}>
                                     <div className="news-tile-overlay" />
                                     <div className="news-tile-content">
@@ -249,21 +251,30 @@ const Home = () => {
                 </div>
             )}
 
-            {/* ── Row 5 : Quick links to internal DB ── */}
+            {/* ── Row 5 : Quick links ── */}
             <div className="home-section">
                 <h2 className="section-title">Base de données</h2>
                 <div className="quick-links">
                     <Link to="/drivers" className="quick-link-card">
-                        <strong>Pilotes</strong>
-                        <ChevronRight size={20} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Zap size={18} color="var(--f1-red)" />
+                            <strong>Pilotes</strong>
+                        </div>
+                        <ChevronRight size={18} color="var(--text-muted)" />
                     </Link>
                     <Link to="/teams" className="quick-link-card">
-                        <strong>Écuries</strong>
-                        <ChevronRight size={20} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Flag size={18} color="var(--f1-red)" />
+                            <strong>Écuries</strong>
+                        </div>
+                        <ChevronRight size={18} color="var(--text-muted)" />
                     </Link>
                     <Link to="/seasons" className="quick-link-card">
-                        <strong>Saisons</strong>
-                        <ChevronRight size={20} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Trophy size={18} color="var(--f1-red)" />
+                            <strong>Saisons</strong>
+                        </div>
+                        <ChevronRight size={18} color="var(--text-muted)" />
                     </Link>
                 </div>
             </div>
